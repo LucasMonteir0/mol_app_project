@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 
+import 'colors.dart';
+
 class MolTheme {
   static ThemeData theme = ThemeData(
       brightness: Brightness.dark,
-      primarySwatch: buildMaterialColor(const Color(0xFFEB6530)),
-      scaffoldBackgroundColor: const Color(0xFF202020),
+      primarySwatch: buildMaterialColor(MolColor.orange),
+      scaffoldBackgroundColor: MolColor.black,
       textTheme: const TextTheme(
           bodyText1: TextStyle(fontSize: 12, color: Colors.white),
           headline2: TextStyle(fontSize: 20, color: Colors.white)),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFFEB6530),
+            textStyle: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w400,
+            ),
+            backgroundColor: MolColor.orange,
+            foregroundColor: Colors.white,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10))),
       ));

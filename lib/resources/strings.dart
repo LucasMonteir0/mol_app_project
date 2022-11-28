@@ -22,7 +22,9 @@ class Strings {
   static const hintSignUpPasswordConfirm = 'Confirme sua senha aqui';
   static const errorMessageEmptyField = 'Campo obrigatóirio*';
   static const errorMessageInvalidEmail = 'Email inválido';
-  static const erroeMessageInvalidPassword = 'Mínimo de 8 caracteres';
+  static const errorMessageInvalidPasswordLength = 'Mínimo de 8 caracteres';
+  static const errorMessageInvalidPassword =
+      'Letra maiúscula\nLetra minúscula\nCaratere especial';
   static const errorMessageInvalidName = 'Inserir nome e sobrenome';
   static const errorMessagePasswordConfirm = 'As senhas não conferem';
   static const errorMessageInvalidPhone = 'Número inválido';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mol_app/objects/auth_icons_row_widget.dart';
-import 'package:mol_app/objects/primary_button_widget.dart';
+import 'package:mol_app/objects/mol_elevated_button_widget.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../objects/help_button_widget.dart';
@@ -103,9 +103,10 @@ class _SignUpPageState extends State<SignUpPage> {
                             keyboardType: TextInputType.text,
                             inputFormatters: [
                               LengthLimitingTextInputFormatter(30),
-                              FilteringTextInputFormatter.allow(RegExp(
-                                  r'[^0-9\.\,\"\?\!\;\:\#\$\%\&\(\)\*\+\-\/\<\>\=\@\[\]\\\^\_\{\}\|\~]+'))
+                              FilteringTextInputFormatter.allow(
+                                  RegExp(r"[a-zA-Z\s]+"))
                             ],
+                            //  r'[^0-9\.\,\"\?\!\;\:\#\$\%\&\(\)\*\+\-\/\<\>\=\@\[\]\\\^\_\{\}\|\~]+'
                             textCapitalization: TextCapitalization.words,
                             decoration:
                                 buildInputDecoration(Strings.hintSignUpName),
@@ -198,7 +199,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         Padding(
                           padding: const EdgeInsets.only(top: 26.0),
                           child: Builder(builder: (context) {
-                            return PrimaryButtonWidget(
+                            return MolElevatedButton(
                               text: Strings.signUp2,
                               onPressedButton: () {
                                 final formState = Form.of(context);
@@ -261,11 +262,17 @@ class _SignUpPageState extends State<SignUpPage> {
 
   String? passwordValidator(password) {
     final emptyError = emptyValidator(password);
+    final passwordRegEx = RegExp(
+        r"(?=.*[A-Z])(?=.*[a-z])(?=.*[\d])(?=.*[!-\/<-@])[a-zA-Z!-\/<-@\d]{8,16}");
 
     if (emptyError == null && password != null) {
       if (password.length < 8) {
-        return Strings.erroeMessageInvalidPassword;
+        return Strings.errorMessageInvalidPasswordLength;
       }
+      if (passwordRegEx.hasMatch(password)) {
+        return null;
+      }
+      return Strings.errorMessageInvalidPassword;
     }
     return emptyError;
   }
